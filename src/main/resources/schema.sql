@@ -1,5 +1,5 @@
 create table person (
-    id varchar(36) primary key,
+    id bigserial primary key,
     name varchar(255) not null,
-    email varchar(255) not null unique
+    email varchar(255) not null
 );

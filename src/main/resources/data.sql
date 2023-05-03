@@ -1,3 +1,4 @@
 insert into person
-values ('jack-daniels', 'Jack Daniels', 'jackdaniels@example.com'),
-       ('george-dickel', 'George Dickel', 'georgedickel@example.com');
+values (1, 'Jack Daniels', 'jackdaniels@example.com'),
+       (2, 'George Dickel', 'georgedickel@example.com'),
+       (3, 'George Dickelson', 'georgedickelson@example.com');

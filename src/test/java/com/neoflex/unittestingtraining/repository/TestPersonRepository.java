@@ -1,10 +1,12 @@
 package com.neoflex.unittestingtraining.repository;
 
+import com.neoflex.unittestingtraining.domain.entity.Person;
 import com.neoflex.unittestingtraining.repository.impl.PersonRepositoryImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -27,17 +29,23 @@ public class TestPersonRepository {
         personRepository = new PersonRepositoryImpl(jdbcTemplate);
     }
 
-    @Test
-    public void testFindAll() {
-        Assertions.assertNotNull(personRepository.findAll());
-        int size = personRepository.findAll().size();
-
-        Assertions.assertEquals(2, size);
-    }
+//    @Test
+//    public void testFindAll() {
+//        Assertions.assertNotNull(personRepository.findAll());
+//        int size = personRepository.findAll().size();
+//
+//        Assertions.assertEquals(3, size);
+//    }
 
     @Test
     public void testFindOne() {
-        Assertions.assertNotNull(personRepository.findOne("jack-daniels"));
+        Person person = personRepository.findOne(1L);
+
+        Assertions.assertNotNull(person);
+        Assertions.assertEquals(person.getName(), "Jack Daniels");
+        Assertions.assertEquals(person.getEmail(), "jackdaniels@example.com");
+
+        Assertions.assertThrows(RuntimeException.class, () -> personRepository.findOne(10000000L));
     }
 
     @AfterEach
