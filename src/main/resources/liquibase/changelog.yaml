@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/changes/changelog-person-03-05.sql
